@@ -1,0 +1,91 @@
+{
+  "Users": [
+    {
+      "id": "1",
+      "Username": "Gracy",
+      "contacts": [
+        {
+          "name": "Peter",
+          "email": "peter@gmail.com",
+          "PhoneNumber": "9343433",
+          "Company": "abc",
+          "Address": "NYK Street"
+        },
+        {
+          "name": "Kate",
+          "email": "kate@gmail.com",
+          "PhoneNumber": "934432453",
+          "Company": "abc",
+          "Address": "Central Street"
+        }
+      ],
+      "messages": [
+        {
+          "sentBy": "Peter",
+          "message": "Hello Gracy"
+        },
+        {
+          "sentBy": "Kate",
+          "messages": "Gracy hi"
+        }
+      
+      ]
+    },
+    {
+      "id": "2",
+      "Username": "KATE",
+      "contacts": [
+        {
+          "name": "Gracy",
+          "email": "gracy@gmail.com",
+          "PhoneNumber": "9343433",
+          "Company": "abc",
+          "Address": "NYK Street"
+        },
+        {
+          "name": "Peter",
+          "email": "peter@gmail.com",
+          "PhoneNumber": "934432453",
+          "Company": "abc",
+          "Address": "Central Street"
+        }
+      ],
+      "messages": [
+        {
+          "sentBy": "Peter",
+          "message": "hi"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "Username": "Peter",
+      "contacts": [
+        {
+          "name": "Gracy",
+          "email": "gracy@gmail.com",
+          "PhoneNumber": "9343433",
+          "Company": "abc",
+          "Address": "NYK Street"
+        },
+        {
+          "name": "Kate",
+          "email": "kate@gmail.com",
+          "PhoneNumber": "934432453",
+          "Company": "abc",
+          "Address": "Central Street"
+        }
+      ],
+      "messages": [
+        {
+          "sentBy": "Kate",
+          "message": "hi"
+        },
+        {
+          "sentBy": "Gracy",
+          "message": "hello peter"
+        }
+      ]
+    }
+  ]
+}

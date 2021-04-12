@@ -14,14 +14,14 @@ import ContactCard from './contactCard';
 class Contacts extends React.Component {
     constructor(props) {
         super(props);
-        console.log("Contacts props",props)
+        console.log("Contacts props", props)
 
         this.state = {
             data: "",
             messages: [''],
             searchValue: "",
-            resultData:"",
-            id:props.location.id
+            resultData: "",
+            id: props.location.id
         }
     }
     onChange = (value) => {
@@ -38,7 +38,7 @@ class Contacts extends React.Component {
         var newlyDisplayed = this.state.data.filter(data => (data.name.toLowerCase().includes(this.state.searchValue.toLowerCase())));
         console.log("result", newlyDisplayed)
         this.setState({
-            resultData:newlyDisplayed
+            resultData: newlyDisplayed
         })
     }
     handleClose = () => {
@@ -49,7 +49,7 @@ class Contacts extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:3000/Users/?id="+this.state.id).then((response) => {
+        axios.get("http://localhost:3000/Users/?id=" + this.state.id).then((response) => {
             console.log(response.data[0].contacts)
             this.setState({
                 data: response.data[0].contacts
@@ -66,7 +66,7 @@ class Contacts extends React.Component {
                 <Grid item xs={3} />
                 <Grid item xs={6}>
                     <p className="title">Contacts <Link to="/addcontact"><button className="addButton" >AddContacts</button></Link></p>
-                   
+
                     <SearchBar
                         placeholder='Please click enter after typing '
                         value={this.state.searchValue}
@@ -75,19 +75,19 @@ class Contacts extends React.Component {
                         onRequestSearch={this.handleChange}
                     />
                     <br />
-                    <p>You have recieved some messages <Link to={{pathname:"/message",id:this.state.id}}><button>Show more</button></Link> </p> 
+                    <p>You have recieved some messages <Link to={{ pathname: "/message", id: this.state.id }}><button>Show more</button></Link> </p>
                     <Card>
-                      
 
-                        {this.state.data != "" && this.state.searchValue==""? (<div>
+
+                        {this.state.data != "" && this.state.searchValue == "" ? (<div>
                             {this.state.data.map((i, key) => {
-                            return (<div><Paper className="contacts"><Grid container spacing={1}><AccountCircle/><Grid xs={4}>{i.name}<br /></Grid><Grid container spacing={1}><Grid xs={2}/><Grid xs={4}>{i.email}</Grid><Grid xs={4}>{i.PhoneNumber}</Grid><Link to={{pathname:"/contactcard",data:i,id:this.state.id}}><button>Open Contact </button> </Link></Grid></Grid></Paper><br /></div>)
+                                return (<div><Paper className="contacts"><Grid container spacing={1}><AccountCircle /><Grid xs={4}>{i.name}<br /></Grid><Grid container spacing={1}><Grid xs={2} /><Grid xs={4}>{i.email}</Grid><Grid xs={4}>{i.PhoneNumber}</Grid><Link to={{ pathname: "/contactcard", data: i, id: this.state.id }}><button>Open Contact </button> </Link></Grid></Grid></Paper><br /></div>)
 
-                        })}</div>) : this.state.searchValue!=""&& this.state.resultData!=""?(<div>{this.state.resultData.map((i, key) => {
-                            return (<div><Paper className="contacts"><Grid container spacing={1}><Grid xs={2}/><AccountCircle/><Grid xs={4}>{i.name}<br /></Grid><Grid container spacing={1}><Grid xs={2}/><Grid xs={4}>{i.email}</Grid><Grid xs={4}>{i.PhoneNumber}</Grid><Link to={{pathname:"/contactcard",name:i.name,id:this.state.id}}><button>Open Contact </button> </Link></Grid></
-                            Grid></Paper><br /></div>)
+                            })}</div>) : this.state.searchValue != "" && this.state.resultData != "" ? (<div>{this.state.resultData.map((i, key) => {
+                                return (<div><Paper className="contacts"><Grid container spacing={1}><Grid xs={2} /><AccountCircle /><Grid xs={4}>{i.name}<br /></Grid><Grid container spacing={1}><Grid xs={2} /><Grid xs={4}>{i.email}</Grid><Grid xs={4}>{i.PhoneNumber}</Grid><Link to={{ pathname: "/contactcard", name: i.name, id: this.state.id }}><button>Open Contact </button> </Link></Grid></
+                                Grid></Paper><br /></div>)
 
-                        })}</div>):<h5>Loading or no results found</h5>}
+                            })}</div>) : <h5>Loading or no results found</h5>}
 
 
 
@@ -96,10 +96,10 @@ class Contacts extends React.Component {
                 <Grid item xs={3} />
             </Grid>
             <Switch>
-             <Route path="/addcontact" exact={true} component={AddContact}/>
-             <Route path="/contactcard"  exact strict component={ContactCard}/>
+                <Route path="/addcontact" exact={true} component={AddContact} />
+                <Route path="/contactcard" exact strict component={ContactCard} />
 
-          </Switch>
+            </Switch>
 
         </div>)
     }

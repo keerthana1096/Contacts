@@ -79,36 +79,36 @@ const styles = theme => ({
   },
   accountCircle: {
     marginLeft: 0,
-    marginRight:0,
+    marginRight: 0,
     fontSize: 50,
     marginTop: 5,
-    color:"white",
-               }
+    color: "white",
+  }
 });
 
 class NavBar extends React.Component {
   state = {
     anchorEl: null,
     mobileMoreAnchorEl: null,
-    data:"",
-    messages:""
+    data: "",
+    messages: ""
   };
-componentDidMount(){
-  axios.get('http://localhost:3000/Users').then((response)=>{
-    this.setState({
-      data:response.data
-    },()=>console.log("users data",this.state.data))
-  })
-}
+  componentDidMount() {
+    axios.get('http://localhost:3000/Users').then((response) => {
+      this.setState({
+        data: response.data
+      }, () => console.log("users data", this.state.data))
+    })
+  }
 
   handleProfileMenuOpen = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
 
   handleMenuClose = () => {
-  
+
     this.setState({ anchorEl: null });
-    
+
     this.handleMobileMenuClose();
   };
 
@@ -125,22 +125,22 @@ componentDidMount(){
     const { classes } = this.props;
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-   
+
     const renderMenu = (
       <Menu
         anchorEl={anchorEl}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-       
+
         keepMounted
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-      {this.state.data!=""? (this.state.data.map((i,key)=>{return(<div><Link to={{pathname:"/contact",id:i.id}}><MenuItem onClick={this.handleMenuClose} style={{textDecoration:"none",color:"black"}}>{i.Username}</MenuItem></Link></div>)})):null }
-       
+        {this.state.data != "" ? (this.state.data.map((i, key) => { return (<div><Link to={{ pathname: "/contact", id: i.id }}><MenuItem onClick={this.handleMenuClose} style={{ textDecoration: "none", color: "black" }}>{i.Username}</MenuItem></Link></div>) })) : null}
+
       </Menu>
     );
-  
+
     const renderMobileMenu = (
       <Menu
         anchorEl={mobileMoreAnchorEl}
@@ -149,43 +149,43 @@ componentDidMount(){
         open={isMobileMenuOpen}
         onClose={this.handleMobileMenuClose}
       >
-             {this.state.data!=""? (this.state.data.map((i,key)=>{return(<div><Link to={{pathname:"/contact",id:i.id}}><MenuItem onClick={this.handleMenuClose} style={{textDecoration:"none",color:"black"}}>{i.Username}</MenuItem></Link></div>)})):null }
-       
-               
-               
+        {this.state.data != "" ? (this.state.data.map((i, key) => { return (<div><Link to={{ pathname: "/contact", id: i.id }}><MenuItem onClick={this.handleMenuClose} style={{ textDecoration: "none", color: "black" }}>{i.Username}</MenuItem></Link></div>) })) : null}
 
-              
-    
-       </Menu>
+
+
+
+
+
+      </Menu>
     );
 
     return (
       <div className={classes.root}>
-        <AppBar position="static" style={{backgroundColor:"rgb(194, 71, 142)"}}>
+        <AppBar position="static" style={{ backgroundColor: "rgb(194, 71, 142)" }}>
           <Toolbar>
             <Typography className={classes.title} variant="title" color="inherit" noWrap>
-        <Link to={{pathname:"/contacts",id:"1"}}>   <h3 style={{textDecoration:"none",color:"white"}}>PhoneBook</h3></Link>
+              <Link to={{ pathname: "/contacts", id: "1" }}>   <h3 style={{ textDecoration: "none", color: "white" }}>PhoneBook</h3></Link>
             </Typography>
-           
+
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-            
+
               <IconButton
                 aria-owns={isMenuOpen ? 'material-appbar' : null}
                 aria-haspopup="true"
                 onClick={this.handleProfileMenuOpen}
-                //color="white"
+              //color="white"
               >
-               
-                 <AccountCircle className={classes.accountCircle} /> 
-                
-                </IconButton>
-              
-              
-              </div>
-               <div> 
-             
-              </div>
+
+                <AccountCircle className={classes.accountCircle} />
+
+              </IconButton>
+
+
+            </div>
+            <div>
+
+            </div>
             <div className={classes.sectionMobile}>
               <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
                 <MoreIcon />
@@ -196,16 +196,16 @@ componentDidMount(){
         {renderMenu}
         {renderMobileMenu}
 
-<Switch>
-<Route path="/" exact strict component={Home} />
-  <Route path="/addcontact" exact strict component={AddContact}/> 
-  <Route path="/contact" exact strict component={Contacts}/>
-  <Route path="/message" exact strict component={MessageBox}/>
-  <Route path="/confirmation" exact strict component={MessageConfirmation}/>
-  <Route path="/contactcard"  exact strict component={ContactCard}/>
-</Switch>
+        <Switch>
+          <Route path="/" exact strict component={Home} />
+          <Route path="/addcontact" exact strict component={AddContact} />
+          <Route path="/contact" exact strict component={Contacts} />
+          <Route path="/message" exact strict component={MessageBox} />
+          <Route path="/confirmation" exact strict component={MessageConfirmation} />
+          <Route path="/contactcard" exact strict component={ContactCard} />
+        </Switch>
 
-     
+
       </div>
     );
   }
